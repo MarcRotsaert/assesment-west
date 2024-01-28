@@ -128,6 +128,8 @@ ENV/
 env.bak/
 venv.bak/
 
+src/venv_west/
+
 # Spyder project settings
 .spyderproject
 .spyproject
