@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-{% load static %}
 <html>
+  {% load static %}
 <head>
     <meta charset="UTF-8" />
     <title>title</title>
@@ -12,9 +12,27 @@
 
   <form action="/algoritm/" method="get">
     <!-- <button name="lala" action="/summary/" method="get"> -->
+      
+      
       <input type="text" id="number" name="number">  </input><br>
-      <input type="submit" id="lowest" value="verzenden"  > </input>
-        </form>
+      <input type="submit" id="lowest" value="indienen" onclick="testclick()"  > </input>
+    </form>
+    <div id="spinnerContainer" class="d-none">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Berekenen...</span>
+      </div>
+    </div>
   <p>{{ lowest }}</p>
 </body>
+
+<script>
+  function testclick() {
+    console.log('gg');
+    var spin = document.getElementById("spinnerContainer");
+    spin.classList.remove("d-none");
+    console.log('lalalala');
+  }
+
+</script>
+
 </html>

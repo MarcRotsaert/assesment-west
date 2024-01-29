@@ -34,8 +34,8 @@ def return_lowest(val_in: int):
     return number_lowest
 
 
-print(return_lowest(25))
-print(time.process_time())
-print(return_lowest(7))
+# print(return_lowest(25))
+# print(time.process_time())
+# print(return_lowest(7))
 print(return_lowest(6))
 print(return_lowest(5))
