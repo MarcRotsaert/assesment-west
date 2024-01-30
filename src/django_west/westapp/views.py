@@ -1,26 +1,34 @@
+# import asyncio
+import multiprocessing 
+
 import time
 from django.shortcuts import render
 
 # Create your views here.
 def lowest(request):
     if request.method=="GET":
-        # print(request.body)
-        print(dir(request))
         num = request.GET.get("number", None)
-        
+
         if num is not None:
-            result = return_lowest(int(num))
-            print("lowest")
-            print(result)
+            with multiprocessing.Pool(processes=1) as pool:
+                result = pool.map(return_lowest, [int(num)])[0]
+            # print(result)
             return render(request, "base.html", context={"lowest": result})
+        
         else:
             return render(request, "base.html")
 
-def return_lowest(val_in: int):
+def return_lowest(val_in: int, max_runtime=30):
+    start_time = time.time()
+
     number_lowest = val_in
     test = True
     while test:
         test = False
+        if time.time()-start_time >max_runtime:
+            number_lowest = "Takes too long"
+            break
+
         for ind in range(val_in-1, 1, -1):
             reminder = number_lowest % ind
             if reminder:
@@ -34,8 +42,8 @@ def return_lowest(val_in: int):
     return number_lowest
 
 
-print(return_lowest(25))
-print(time.process_time())
-print(return_lowest(7))
-print(return_lowest(6))
-print(return_lowest(5))
+# print(return_lowest(25))
+# print(time.process_time())
+# print(return_lowest(7))
+# print(return_lowest(6))
+# print(return_lowest(5))
