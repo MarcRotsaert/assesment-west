@@ -7,30 +7,25 @@ from django.shortcuts import render
 # Create your views here.
 def lowest(request):
     if request.method=="GET":
-        # print(request.body)
-        print(dir(request))
         num = request.GET.get("number", None)
 
         if num is not None:
-
             with multiprocessing.Pool(processes=1) as pool:
-                result = pool.map(return_lowest, [int(num)])
-
-
-            print("lowest")
-            print(result)
+                result = pool.map(return_lowest, [int(num)])[0]
+            # print(result)
             return render(request, "base.html", context={"lowest": result})
+        
         else:
             return render(request, "base.html")
 
-def return_lowest(val_in: int):
+def return_lowest(val_in: int, max_runtime=30):
     start_time = time.time()
 
     number_lowest = val_in
     test = True
     while test:
         test = False
-        if time.time()-start_time >30:
+        if time.time()-start_time >max_runtime:
             number_lowest = "Takes too long"
             break
 
