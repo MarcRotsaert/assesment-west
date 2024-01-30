@@ -1,5 +1,5 @@
 # Debian Base Image with Python 3.11
-FROM python:bullseye
+FROM python:3.11-bullseye
 
 # Environment variables
 ENV PYTHONBUFFERED=1
@@ -7,7 +7,6 @@ ENV DJANGO_SETTINGS_MODULE="django_west.settings"
 
 # Copy sources
 COPY . /app
-# ADD ../data /mnt/data
 
 
 # Install Pyton libraries
