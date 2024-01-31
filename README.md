@@ -16,5 +16,10 @@ Webpage should be opened
 For access open port on firewall 
 Add Ip adress of partner in settings.py, variable Allowed-host
 
-Make connection to url 
+Make connection to url:
 http://<ipadreshost>:8080/algoritm
+
+## Unittest
+python manage.py test
+- activate from map  src/django_west
+
