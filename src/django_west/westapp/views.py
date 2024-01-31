@@ -10,10 +10,15 @@ def lowest(request):
         num = request.GET.get("number", None)
 
         if num is not None:
-            with multiprocessing.Pool(processes=1) as pool:
-                result = pool.map(return_lowest, [int(num)])[0]
-            # print(result)
-            return render(request, "base.html", context={"lowest": result})
+            try:
+                with multiprocessing.Pool(processes=1) as pool:
+                    result = pool.map(return_lowest, [int(num)])[0]
+                # print(result)
+                result = "result for " + num +':\n ' +str(result)
+                context = {"lowest": result}
+            except ValueError:
+                context = {"lowest": "fill in integer"}
+            return render(request, "base.html", context=context)
         
         else:
             return render(request, "base.html")
@@ -40,10 +45,3 @@ def return_lowest(val_in: int, max_runtime=30):
                     number_lowest += (val_in-1)*val_in
 
     return number_lowest
-
-
-# print(return_lowest(25))
-# print(time.process_time())
-# print(return_lowest(7))
-# print(return_lowest(6))
-# print(return_lowest(5))
