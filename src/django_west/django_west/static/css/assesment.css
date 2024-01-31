@@ -1,0 +1,10 @@
+#number {background-color: red;
+margin-left: 12pt;}
+#lowest {background-color: lightgray;
+    margin-left: 12pt;}
+p {width:fit-content;
+    padding:10px;
+    border: 2px solid;
+    border-radius: 25px;
+    font-size: large;
+    margin: 10px;}
